@@ -4,3 +4,5 @@ export type PackItem = {
   quantity: number;
   packed: boolean;
 };
+
+export type PackItems = PackItem[];

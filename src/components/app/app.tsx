@@ -18,7 +18,7 @@ function App(): JSX.Element {
       <Logo />
       <Form setItems={addItem} />
       <PackingList items={items} />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 }

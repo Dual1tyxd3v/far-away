@@ -1,11 +1,7 @@
-import { PackItem } from '../../types/types';
+import { PackItems } from '../../types/types';
 import PackingItem from '../packing-item/packing-item';
 
-type PackingListProps = {
-  items: PackItem[];
-};
-
-export default function PackingList({ items }: PackingListProps) {
+export default function PackingList({ items }: {items: PackItems}) {
   return (
     <div className="list">
       <ul>
