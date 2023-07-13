@@ -3,3 +3,5 @@ export const initialItems = [
   { id: 2, description: 'Socks', quantity: 12, packed: false },
   { id: 3, description: 'Charger', quantity: 1, packed: true },
 ];
+
+export const MAX_ITEMS = 20;
