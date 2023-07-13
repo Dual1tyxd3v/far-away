@@ -1,22 +1,41 @@
-/* eslint-disable no-console */
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { MAX_ITEMS } from '../../const';
+import { PackItem } from '../../types/types';
 
-export default function Form() {
-  const [formData, setFormData] = useState({ input: '', select: '1' });
+type FormProps = {
+  setItems: (newItem: PackItem) => void;
+};
+
+export default function Form({ setItems }: FormProps) {
+  const [formData, setFormData] = useState({ description: '', quantity: 1 });
 
   function handlerSubmit(e: FormEvent) {
     e.preventDefault();
+
+    if (!formData.description) {
+      return;
+    }
+    setItems({
+      id: new Date().getTime(),
+      description: formData.description,
+      quantity: formData.quantity,
+      packed: false,
+    });
+
+    setFormData({ description: '', quantity: 1 });
   }
 
   function handlerChange(e: ChangeEvent) {
     e.target.classList.contains('input') &&
-      setFormData({ ...formData, input: (e.target as HTMLInputElement).value });
+      setFormData({
+        ...formData,
+        description: (e.target as HTMLInputElement).value,
+      });
 
     e.target.classList.contains('select') &&
       setFormData({
         ...formData,
-        select: (e.target as HTMLSelectElement).value,
+        quantity: +(e.target as HTMLSelectElement).value,
       });
   }
   return (
@@ -24,7 +43,7 @@ export default function Form() {
       <h3>What do you need for your 😍 trip?</h3>
       <select
         className="select"
-        defaultValue={formData.select}
+        value={formData.quantity}
         onChange={handlerChange}
       >
         {Array.from({ length: MAX_ITEMS }, (_, i) => i + 1).map((val) => (
@@ -37,7 +56,7 @@ export default function Form() {
         className="input"
         type="text"
         placeholder="Item..."
-        value={formData.input}
+        value={formData.description}
         onChange={handlerChange}
       />
       <button>Add</button>

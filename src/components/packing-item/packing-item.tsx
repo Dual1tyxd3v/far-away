@@ -1,10 +1,7 @@
+import { PackItem } from '../../types/types';
+
 type PackingItemProps = {
-  item: {
-    id: number;
-    description: string;
-    quantity: number;
-    packed: boolean;
-  };
+  item: PackItem;
 };
 
 export default function PackingItem({ item }: PackingItemProps) {
