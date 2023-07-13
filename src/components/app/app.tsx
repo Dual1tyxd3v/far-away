@@ -13,11 +13,16 @@ function App(): JSX.Element {
     setItems([...items, newItem]);
   };
 
+  const togglePacked = (newItem: PackItem) => {
+    const index = items.findIndex((item) => item.id === newItem.id);
+    setItems([...items.slice(0, index), newItem, ...items.slice(index + 1)]);
+  };
+
   return (
     <div className="app">
       <Logo />
       <Form setItems={addItem} />
-      <PackingList items={items} />
+      <PackingList items={items} togglePacked={togglePacked} />
       <Stats items={items} />
     </div>
   );
