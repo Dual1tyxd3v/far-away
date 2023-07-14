@@ -21,6 +21,9 @@ function App(): JSX.Element {
     setItems(items.filter((item) => item.id !== id));
   };
 
+  const clearItems = () => {
+    setItems([]);
+  };
   return (
     <div className="app">
       <Logo />
@@ -29,6 +32,7 @@ function App(): JSX.Element {
         items={items}
         togglePacked={togglePacked}
         deleteItem={deleteItem}
+        clearItems={clearItems}
       />
       <Stats items={items} />
     </div>
