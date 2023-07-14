@@ -14,7 +14,7 @@ function App(): JSX.Element {
   };
 
   const togglePacked = (newItem: PackItem) => {
-    setItems(items.map((item) => item.id === newItem.id ? newItem : item));
+    setItems(items.map((item) => (item.id === newItem.id ? newItem : item)));
   };
 
   const deleteItem = (id: number) => {
