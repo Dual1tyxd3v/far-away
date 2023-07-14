@@ -18,11 +18,20 @@ function App(): JSX.Element {
     setItems([...items.slice(0, index), newItem, ...items.slice(index + 1)]);
   };
 
+  const deleteItem = (id: number) => {
+    const index = items.findIndex((item) => item.id === id);
+    setItems([...items.slice(0, index), ...items.slice(index + 1)]);
+  };
+
   return (
     <div className="app">
       <Logo />
       <Form setItems={addItem} />
-      <PackingList items={items} togglePacked={togglePacked} />
+      <PackingList
+        items={items}
+        togglePacked={togglePacked}
+        deleteItem={deleteItem}
+      />
       <Stats items={items} />
     </div>
   );

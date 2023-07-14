@@ -3,10 +3,11 @@ import { PackItem } from '../../types/types';
 type PackingItemProps = {
   item: PackItem;
   togglePacked: (item: PackItem) => void;
+  deleteItem: (id: number) => void;
 };
 
-export default function PackingItem({ item, togglePacked }: PackingItemProps) {
-  const { description, packed, quantity } = item;
+export default function PackingItem({ item, togglePacked, deleteItem }: PackingItemProps) {
+  const { description, packed, quantity, id } = item;
 
   return (
     <li>
@@ -18,7 +19,7 @@ export default function PackingItem({ item, togglePacked }: PackingItemProps) {
       <span style={packed ? { textDecoration: 'line-through' } : {}}>
         {quantity} {description}
       </span>
-      <button>❌</button>
+      <button onClick={() => deleteItem(id)}>❌</button>
     </li>
   );
 }
