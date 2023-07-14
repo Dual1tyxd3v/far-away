@@ -19,8 +19,7 @@ function App(): JSX.Element {
   };
 
   const deleteItem = (id: number) => {
-    const index = items.findIndex((item) => item.id === id);
-    setItems([...items.slice(0, index), ...items.slice(index + 1)]);
+    setItems(items.filter((item) => item.id !== id));
   };
 
   return (
